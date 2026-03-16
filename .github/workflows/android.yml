@@ -6,20 +6,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Unzip
+      - name: Unzip project
         run: unzip FitnessMotivator-1.zip
-      - name: Build
+      - name: Build APK
         working-directory: FitnessMotivator
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug
-      - name: Upload
-        uses: actions/upload-artifact@v3
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
-          name: app-debug
+          name: FitnessMotivator-APK
           path: FitnessMotivator/app/build/outputs/apk/debug/app-debug.apk
